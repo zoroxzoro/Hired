@@ -1,9 +1,9 @@
-import { useUser } from "@clerk/clerk-react";
-import ApplicationCard from "./ApplicationCard";
-import { useEffect } from "react";
-import { getApplications } from "@/api/apiApplication";
+import { getMyApplications } from "@/api/apiApplication";
 import useFetch from "@/hooks/Fetch-jobs";
+import { useUser } from "@clerk/clerk-react";
+import { useEffect } from "react";
 import { BarLoader } from "react-spinners";
+import ApplicationCard from "./ApplicationCard";
 
 const CreatedApplications = () => {
   const { user } = useUser();
@@ -12,7 +12,7 @@ const CreatedApplications = () => {
     loading: loadingApplications,
     data: applications,
     fn: fnApplications,
-  } = useFetch(getApplications, {
+  } = useFetch(getMyApplications, {
     user_id: user.id,
   });
   console.log(applications);

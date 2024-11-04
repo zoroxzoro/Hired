@@ -121,7 +121,7 @@ const JobPage = () => {
 
       <h2>What we are looking for</h2>
       <ReactMarkdown className="bg-transparent sm:text-lg">
-        {jobs?.requirements || ""}
+        {jobs?.requirement || ""}
       </ReactMarkdown>
 
       {/* Apply for the job */}
@@ -138,9 +138,17 @@ const JobPage = () => {
       {Applications && jobs?.recruiter_id === user?.id && (
         <div className="flex flex-col gap-2">
           <h2 className="font-bold mb-4 text-xl ml-1">Applications</h2>
-          {Applications.map((application) => (
-            <ApplicationCard key={application.id} application={application} />
-          ))}
+          {Applications.map(
+            (application) => (
+              console.log(application.id),
+              (
+                <ApplicationCard
+                  key={application.id}
+                  application={application}
+                />
+              )
+            )
+          )}
         </div>
       )}
     </div>

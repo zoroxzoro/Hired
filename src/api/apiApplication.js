@@ -48,7 +48,22 @@ export async function updateApplicationStatus(token, { job_id }, status) {
   return data;
 }
 
-export async function getApplications(token, { user_id }) {
+export async function getApplications(token, { job_id }) {
+  const supabase = await supabaseClient(token);
+  const { data, error } = await supabase
+    .from("application")
+    .select("*")
+    .eq("job_id", job_id);
+
+  if (error) {
+    console.error("Error fetching Applications:", error);
+    return null; // Return null if there's an error
+  }
+
+  return data;
+}
+
+export async function getMyApplications(token, { user_id }) {
   const supabase = await supabaseClient(token);
   const { data, error } = await supabase
     .from("application")
